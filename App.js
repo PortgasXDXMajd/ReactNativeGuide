@@ -1,21 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import WelcomeScreen from './components/welcome-screen';
+import HomeScreen from './components/main-screens/home-screen';
+import AboutScreen from './components/main-screens/about-screen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+
+const Stack = createNativeStackNavigator();
+
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="WelcomeScreen">
+          
+          <Stack.Screen name="WelcomeScreen" options={{ headerShown: false }}>
+            { props => <WelcomeScreen navigation={props.navigation} />}
+          </Stack.Screen>
+          <Stack.Screen name="HomeScreen" options={{ headerShown: false }}>
+            { props => <HomeScreen navigation={props.navigation} label='Hello World!!' />}
+          </Stack.Screen>
+          <Stack.Screen name="AboutScreen" options={{ headerShown: false }}>
+            { props => <AboutScreen navigation={props.navigation} />}
+          </Stack.Screen>
+        </Stack.Navigator>
+      </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
