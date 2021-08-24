@@ -1,5 +1,6 @@
 const initialState = {
     FishList:[],
+    MyFavFishList:[],
     Fish: null,
     isLoading:true
 }
@@ -30,6 +31,19 @@ export function FishReducer(state=initialState, action){
                 ...state,
                 Fish:myFish??oldFish
             }
+        case 'ADD_NEW_FISH':
+            console.log(action.payload)
+            return{
+                ...state,
+                FishList: [...state.FishList, action.payload]
+            }
+        case 'ADD_FISH_TO_FAV':
+            console.log('hererererere')
+            return {
+                ...state,
+                MyFavFishList: [...state.MyFavFishList, action.payload]
+            }
+
         default:
             return state;
     }
